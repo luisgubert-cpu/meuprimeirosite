@@ -3,502 +3,820 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏀 HoopLife - Tudo sobre Basquete</title>
+    <title>HoopLife | Portal Oficial de Basquetebol</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #1a2b3c;
+            --primary-dark: #0f1a24;
+            --accent: #c4a962;
+            --accent-dark: #a08a4a;
+            --text-light: #ffffff;
+            --text-dark: #2c3e50;
+            --text-gray: #6c757d;
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --border: #e9ecef;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
         body {
-            background: linear-gradient(145deg, #f5f5f5 0%, #e0e0e0 100%);
-            color: #1a1a2e;
+            font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
-        /* Cabeçalho com efeito de quadra */
-        header {
-            background: linear-gradient(135deg, #c96c2c 0%, #b85e1e 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            text-align: center;
-            border-bottom: 6px solid #f9a826;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            position: relative;
-            overflow: hidden;
+        /* Tipografia refinada */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 500;
+            letter-spacing: -0.02em;
         }
 
-        header::before {
-            content: "🏀🏀🏀";
-            position: absolute;
-            top: 10px;
-            left: 0;
-            width: 100%;
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h2 {
             font-size: 2.5rem;
-            opacity: 0.15;
-            letter-spacing: 20px;
-            transform: rotate(-5deg);
-            pointer-events: none;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            text-shadow: 3px 3px 0 #4a2c1a;
-            letter-spacing: 2px;
+            margin-bottom: 2rem;
             position: relative;
-            z-index: 2;
         }
 
-        header p {
-            font-size: 1.3rem;
-            font-style: italic;
-            text-shadow: 1px 1px 0 #333;
-            background-color: rgba(0,0,0,0.2);
-            display: inline-block;
-            padding: 0.3rem 2rem;
-            border-radius: 30px;
-            margin-top: 8px;
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            margin-top: 1rem;
         }
 
-        /* Barra de navegação com tema */
-        nav {
-            background-color: #1e2a3a;
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            padding: 1rem 2rem;
-            border-bottom: 3px solid #f9a826;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: #f0f0f0;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.2rem;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-        }
-
-        nav a:hover {
-            background-color: #f9a826;
-            color: #1e2a3a;
-            border-color: #c96c2c;
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-
-        /* Conteúdo principal */
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Seção de destaque com quadra */
-        .destaque {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><rect width="100" height="100" fill="%23d6a56b"/><circle cx="50" cy="50" r="15" fill="none" stroke="%23ffffff80" stroke-width="2"/><line x1="0" y1="0" x2="100" y2="100" stroke="%23ffffff80" stroke-width="1"/><line x1="100" y1="0" x2="0" y2="100" stroke="%23ffffff80" stroke-width="1"/><circle cx="50" cy="50" r="3" fill="%23ffffff80"/></svg>');
-            background-size: 80px 80px, cover;
-            background-blend-mode: overlay;
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: 30px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            margin-bottom: 2.5rem;
-            border: 3px solid #f9a826;
-            text-align: center;
-        }
-
-        .destaque h2 {
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 0 #c96c2c;
+        h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .destaque p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 1.5rem;
-            background-color: rgba(0,0,0,0.5);
-            padding: 1rem;
-            border-radius: 20px;
+        /* Container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: #f9a826;
-            color: #1e2a3a;
-            font-weight: bold;
-            padding: 0.8rem 2rem;
-            border-radius: 40px;
+        /* Header refinado */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--text-light);
+            padding: 1rem 0;
+            border-bottom: 3px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .header-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        /* Navegação elegante */
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
             text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1rem 0;
+            background: transparent;
+        }
+
+        .breadcrumb ul {
+            list-style: none;
+            display: flex;
+            gap: 0.5rem;
+            color: var(--text-gray);
+        }
+
+        .breadcrumb a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero section sóbria */
+        .hero {
+            background: linear-gradient(rgba(26, 43, 60, 0.95), rgba(15, 26, 36, 0.95)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><circle cx="50" cy="50" r="45" fill="none" stroke="%23c4a962" stroke-width="0.5"/><circle cx="50" cy="50" r="30" fill="none" stroke="%23c4a962" stroke-width="0.5"/><circle cx="50" cy="50" r="15" fill="none" stroke="%23c4a962" stroke-width="0.5"/><line x1="5" y1="50" x2="95" y2="50" stroke="%23c4a962" stroke-width="0.5"/><line x1="50" y1="5" x2="50" y2="95" stroke="%23c4a962" stroke-width="0.5"/></svg>');
+            background-size: cover;
+            color: var(--text-light);
+            padding: 5rem 0;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .hero h2::after {
+            background: var(--accent);
+        }
+
+        .hero p {
             font-size: 1.2rem;
-            border: 2px solid #c96c2c;
-            transition: all 0.3s;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-bottom: 2rem;
         }
 
-        .btn:hover {
-            background-color: #c96c2c;
-            color: white;
-            border-color: #f9a826;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(249,168,38,0.5);
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
         }
 
-        /* Cards de notícias/jogadores */
-        .noticias-grid {
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Cards elegantes */
+        .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
 
         .card {
-            background: white;
-            border-radius: 25px;
+            background: var(--card-bg);
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-bottom: 5px solid #c96c2c;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(201,108,44,0.4);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .card-img {
+        .card-image {
             height: 200px;
-            background-size: cover;
-            background-position: center;
-            background-color: #2c3e50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: rgba(255,255,255,0.2);
-            background-blend-mode: overlay;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            position: relative;
+            overflow: hidden;
         }
 
-        /* imagens simuladas com cores sólidas e ícones */
-        .img1 { background: linear-gradient(135deg, #c96c2c, #f9a826); }
-        .img2 { background: linear-gradient(135deg, #1e2a3a, #2c3e50); }
-        .img3 { background: linear-gradient(135deg, #b85e1e, #d47b3a); }
-        .img4 { background: linear-gradient(135deg, #2c3e50, #1e2a3a); }
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(196, 169, 98, 0.1) 50%, transparent 70%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
 
         .card-content {
-            padding: 1.8rem 1.5rem;
-        }
-
-        .card-content h3 {
-            font-size: 1.8rem;
-            color: #c96c2c;
-            margin-bottom: 0.5rem;
-            border-left: 5px solid #f9a826;
-            padding-left: 1rem;
-        }
-
-        .card-content p {
-            color: #2d3436;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-
-        .tag {
-            background-color: #c96c2c;
-            color: white;
-            padding: 0.2rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            display: inline-block;
-        }
-
-        /* Tabela de classificação */
-        .tabela-classificacao {
-            background: #1e2a3a;
-            color: white;
             padding: 2rem;
-            border-radius: 30px;
-            margin: 3rem 0;
-            border: 2px solid #f9a826;
-            box-shadow: 0 8px 0 #c96c2c;
         }
 
-        .tabela-classificacao h2 {
-            font-size: 2.2rem;
-            color: #f9a826;
-            text-align: center;
-            margin-bottom: 1.5rem;
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--accent);
             text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .card-text {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .card-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .card-link:hover {
+            gap: 1rem;
+            color: var(--accent-dark);
+        }
+
+        /* Tabela de classificação refinada */
+        .standings {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin: 4rem 0;
+        }
+
+        .standings h3 {
+            color: var(--primary);
+            margin-bottom: 2rem;
+        }
+
+        .standings h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            margin-top: 0.5rem;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 1.1rem;
         }
 
         th {
-            background-color: #c96c2c;
-            color: white;
+            text-align: left;
             padding: 1rem;
-            font-size: 1.2rem;
+            background: var(--primary);
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         td {
             padding: 1rem;
-            border-bottom: 1px solid #f9a826;
-            text-align: center;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-gray);
         }
 
         tr:hover td {
-            background-color: #2c3e50;
+            background: rgba(196, 169, 98, 0.05);
         }
 
-        .time-col {
-            text-align: left;
-            font-weight: bold;
+        .team-name {
+            font-weight: 500;
+            color: var(--primary);
         }
 
-        /* Times em destaque */
-        .times-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+        .team-wins {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Seção de times */
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
 
-        .time-icone {
-            background: white;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 6px 0 #c96c2c, 0 12px 20px rgba(0,0,0,0.2);
-            border: 3px solid #f9a826;
-            transition: all 0.3s;
-        }
-
-        .time-icone:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 0 #f9a826, 0 15px 25px rgba(201,108,44,0.5);
-        }
-
-        .time-icone span {
-            font-size: 3.5rem;
-            filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.3));
-        }
-
-        .time-icone small {
-            font-weight: bold;
-            color: #1e2a3a;
-            margin-top: 8px;
-            font-size: 1.2rem;
-        }
-
-        /* Rodapé */
-        footer {
-            background-color: #1e2a3a;
-            color: #ccc;
+        .team-item {
             text-align: center;
             padding: 2rem;
-            margin-top: 4rem;
-            border-top: 5px solid #f9a826;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+        }
+
+        .team-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .team-name-small {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .team-record-small {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        /* Newsletter formal */
+        .newsletter {
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 4rem 2rem;
+            border-radius: 8px;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .newsletter h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: var(--text-light);
             font-size: 1rem;
         }
 
-        footer p {
-            margin: 0.5rem 0;
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        footer .destaque-footer {
-            color: #f9a826;
-            font-weight: bold;
-            font-size: 1.3rem;
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
-        /* responsividade */
-        @media (max-width: 700px) {
-            header h1 { font-size: 2.2rem; }
-            nav { gap: 1rem; }
-            .destaque h2 { font-size: 2rem; }
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--accent);
+            border: none;
+            border-radius: 4px;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--accent-dark);
+            color: var(--text-light);
+        }
+
+        /* Footer refinado */
+        .footer {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Utilitários */
+        .text-accent {
+            color: var(--accent);
+        }
+        
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin: 2rem 0;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🏀 HoopLife</h1>
-        <p>Sua dose diária de basquete</p>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🏀</span>
+                <div class="logo-text">
+                    <h1>HoopLife</h1>
+                    <p>Portal Oficial de Basquetebol</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#inicio" class="active">Início</a></li>
+                    <li><a href="#noticias">Notícias</a></li>
+                    <li><a href="#classificacao">Classificação</a></li>
+                    <li><a href="#times">Times</a></li>
+                    <li><a href="#estatisticas">Estatísticas</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <nav>
-        <a href="#">Início</a>
-        <a href="#">Notícias</a>
-        <a href="#">Times</a>
-        <a href="#">Jogadores</a>
-        <a href="#">Estatísticas</a>
-        <a href="#">Ingressos</a>
-    </nav>
+    <div class="breadcrumb">
+        <div class="container">
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li>></li>
+                <li>Notícias</li>
+            </ul>
+        </div>
+    </div>
 
-    <main>
-        <section class="destaque">
-            <h2>NBA Playoffs 2025</h2>
-            <p>🔴⚪🔵 A emoção está no auge! Confira os confrontos das finais de conferência e quem leva o título. Tudo acompanhado por aqui.</p>
-            <a href="#" class="btn">Ver tabela completa dos playoffs</a>
-        </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Conferência Leste: <br>A disputa pelas finais</h2>
+            <p>Análise aprofundada do cenário atual dos playoffs, com estatísticas exclusivas e projeções baseadas em desempenho histórico.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">82</span>
+                    <span class="stat-label">Jogos na temporada</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">30</span>
+                    <span class="stat-label">Times na liga</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">16</span>
+                    <span class="stat-label">Times nos playoffs</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <h2 style="font-size: 2.2rem; margin-bottom: 1rem; border-left: 10px solid #c96c2c; padding-left: 1rem;">🔥 Últimas do basquete</h2>
-
-        <div class="noticias-grid">
+    <main class="container">
+        <h2>Notícias em destaque</h2>
+        
+        <div class="cards-grid">
             <article class="card">
-                <div class="card-img img1">🏆</div>
+                <div class="card-image"></div>
                 <div class="card-content">
-                    <span class="tag">Destaque</span>
-                    <h3>MVP da temporada</h3>
-                    <p>Nikola Jokić conquista o terceiro MVP da carreira após médias de 29.3 pts, 13.2 reb e 10.5 assist. Gênio!</p>
-                    <a href="#" style="color:#c96c2c; font-weight: bold;">Leia mais →</a>
+                    <div class="card-meta">
+                        <span>Playoffs</span>
+                        <span>• 5 min de leitura</span>
+                    </div>
+                    <h3 class="card-title">Análise tática: Boston Celtics</h3>
+                    <p class="card-text">A evolução defensiva da equipe sob o comando de Joe Mazzulla tem sido o diferencial na campanha. Análise detalhada dos sistemas.</p>
+                    <a href="#" class="card-link">Leia mais →</a>
                 </div>
             </article>
+
             <article class="card">
-                <div class="card-img img2">✨</div>
+                <div class="card-image"></div>
                 <div class="card-content">
-                    <span class="tag">Transação</span>
-                    <h3>Super troca no mercado</h3>
-                    <p>Lakers e Hawks fecham acordo: Trae Young vai para LA em troca de pacote com Russell e futuras picks.</p>
-                    <a href="#" style="color:#c96c2c; font-weight: bold;">Leia mais →</a>
+                    <div class="card-meta">
+                        <span>Mercado</span>
+                        <span>• 3 min de leitura</span>
+                    </div>
+                    <h3 class="card-title">Panorama das trocas</h3>
+                    <p class="card-text">Como as movimentações recentes afetam o equilíbrio competitivo da liga. Análise de impacto por conferência.</p>
+                    <a href="#" class="card-link">Leia mais →</a>
                 </div>
             </article>
+
             <article class="card">
-                <div class="card-img img3">🇺🇸</div>
+                <div class="card-image"></div>
                 <div class="card-content">
-                    <span class="tag">Seleção</span>
-                    <h3>Pré-olímpico: EUA convocados</h3>
-                    <p>Lebron, Curry e Durant lideram a seleção norte-americana rumo a Paris 2025. Veja a lista completa.</p>
-                    <a href="#" style="color:#c96c2c; font-weight: bold;">Leia mais →</a>
-                </div>
-            </article>
-            <article class="card">
-                <div class="card-img img4">🏀</div>
-                <div class="card-content">
-                    <span class="tag">NBB</span>
-                    <h3>Flamengo x Franca</h3>
-                    <p>Clássico brasileiro acontece sábado no Maracanãzinho. Ingressos esgotados em 2 horas.</p>
-                    <a href="#" style="color:#c96c2c; font-weight: bold;">Leia mais →</a>
+                    <div class="card-meta">
+                        <span>Estatísticas</span>
+                        <span>• 4 min de leitura</span>
+                    </div>
+                    <h3 class="card-title">Evolução dos números</h3>
+                    <p class="card-text">Comparativo das métricas avançadas entre temporadas e o que os números revelam sobre as tendências do jogo moderno.</p>
+                    <a href="#" class="card-link">Leia mais →</a>
                 </div>
             </article>
         </div>
 
-        <section class="tabela-classificacao">
-            <h2>🏆 Classificação NBA - Conferência Leste</h2>
+        <section class="standings">
+            <h3>Classificação - Conferência Leste</h3>
             <table>
                 <thead>
                     <tr>
                         <th>Pos</th>
-                        <th class="time-col">Time</th>
+                        <th>Time</th>
+                        <th>J</th>
                         <th>V</th>
                         <th>D</th>
                         <th>%</th>
-                        <th>Últimos 5</th>
+                        <th>Jogos</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td class="time-col">🏀 Boston Celtics</td>
-                        <td>52</td>
-                        <td>15</td>
-                        <td>.776</td>
-                        <td>4-1</td>
+                        <td class="team-name">Boston Celtics</td>
+                        <td>65</td>
+                        <td class="team-wins">52</td>
+                        <td>13</td>
+                        <td>.800</td>
+                        <td>-</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td class="time-col">🏀 Milwaukee Bucks</td>
-                        <td>48</td>
-                        <td>19</td>
-                        <td>.716</td>
-                        <td>3-2</td>
+                        <td class="team-name">Milwaukee Bucks</td>
+                        <td>64</td>
+                        <td class="team-wins">47</td>
+                        <td>17</td>
+                        <td>.734</td>
+                        <td>4.5</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td class="time-col">🏀 Cleveland Cavaliers</td>
-                        <td>45</td>
-                        <td>22</td>
-                        <td>.672</td>
-                        <td>5-0</td>
+                        <td class="team-name">Cleveland Cavaliers</td>
+                        <td>64</td>
+                        <td class="team-wins">45</td>
+                        <td>19</td>
+                        <td>.703</td>
+                        <td>6.5</td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td class="time-col">🏀 New York Knicks</td>
-                        <td>43</td>
-                        <td>24</td>
-                        <td>.642</td>
-                        <td>3-2</td>
+                        <td class="team-name">New York Knicks</td>
+                        <td>65</td>
+                        <td class="team-wins">42</td>
+                        <td>23</td>
+                        <td>.646</td>
+                        <td>10.0</td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td class="time-col">🏀 Philadelphia 76ers</td>
-                        <td>40</td>
-                        <td>27</td>
-                        <td>.597</td>
-                        <td>2-3</td>
+                        <td class="team-name">Philadelphia 76ers</td>
+                        <td>63</td>
+                        <td class="team-wins">39</td>
+                        <td>24</td>
+                        <td>.619</td>
+                        <td>12.0</td>
                     </tr>
                 </tbody>
             </table>
-            <p style="text-align: right; margin-top: 1.5rem; color: #f9a826;">Atualizado em 23/02/2025</p>
         </section>
 
-        <h2 style="font-size: 2rem; margin: 2rem 0 1rem; text-align: center;">⭐ Times para acompanhar ⭐</h2>
-        <div class="times-row">
-            <div class="time-icone">
-                <span>💚</span>
-                <small>Celtics</small>
+        <h2>Times da temporada</h2>
+        
+        <div class="teams-grid">
+            <div class="team-item">
+                <div class="team-icon">☘️</div>
+                <div class="team-name-small">Celtics</div>
+                <div class="team-record-small">52-13</div>
             </div>
-            <div class="time-icone">
-                <span>💛</span>
-                <small>Lakers</small>
+            <div class="team-item">
+                <div class="team-icon">🦌</div>
+                <div class="team-name-small">Bucks</div>
+                <div class="team-record-small">47-17</div>
             </div>
-            <div class="time-icone">
-                <span>💙</span>
-                <small>Warriors</small>
+            <div class="team-item">
+                <div class="team-icon">🎸</div>
+                <div class="team-name-small">Cavaliers</div>
+                <div class="team-record-small">45-19</div>
             </div>
-            <div class="time-icone">
-                <span>❤️</span>
-                <small>Bulls</small>
+            <div class="team-item">
+                <div class="team-icon">🗽</div>
+                <div class="team-name-small">Knicks</div>
+                <div class="team-record-small">42-23</div>
             </div>
-            <div class="time-icone">
-                <span>🖤</span>
-                <small>Heat</small>
+            <div class="team-item">
+                <div class="team-icon">🔔</div>
+                <div class="team-name-small">76ers</div>
+                <div class="team-record-small">39-24</div>
             </div>
         </div>
 
-        <section style="background: #f9a826; padding: 2rem; border-radius: 30px; margin: 3rem 0; color: #1e2a3a; text-align: center; border: 4px solid #c96c2c;">
-            <h2 style="font-size: 2.2rem;">🏀⚡ Não perca nenhum lance!</h2>
-            <p style="font-size: 1.3rem; margin: 1rem 0;">Inscreva-se na nossa newsletter e receba notícias, estatísticas e curiosidades.</p>
-            <form style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 600px; margin: 0 auto;">
-                <input type="email" placeholder="Seu melhor e-mail" style="flex: 1; min-width: 200px; padding: 1rem 1.5rem; border-radius: 50px; border: none; font-size: 1rem;">
-                <button type="submit" class="btn" style="border: none; cursor: pointer;">Inscrever</button>
+        <section class="newsletter">
+            <h3>Receba nosso conteúdo exclusivo</h3>
+            <p>Análises aprofundadas, estatísticas avançadas e entrevistas com especialistas entregues em seu email.</p>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Seu endereço de email profissional" required>
+                <button type="submit">Inscrever-se</button>
             </form>
         </section>
     </main>
 
-    <footer>
-        <p class="destaque-footer">🏀 HoopLife - O site do verdadeiro fã de basquete</p>
-        <p>© 2025 HoopLife. Todos os direitos reservados.</p>
-        <p>NBA, NBB, Euroliga e outras ligas do mundo em um só lugar.</p>
-        <p style="margin-top: 1rem;">🍊 Feito com paixão pela laranja e pela cesta.</p>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Sobre o HoopLife</h4>
+                <p>Portal dedicado à cobertura profissional do basquetebol, com análises aprofundadas e estatísticas exclusivas desde 2010.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Seções</h4>
+                <ul>
+                    <li><a href="#noticias">Notícias</a></li>
+                    <li><a href="#classificacao">Classificação</a></li>
+                    <li><a href="#times">Times</a></li>
+                    <li><a href="#jogadores">Jogadores</a></li>
+                    <li><a href="#estatisticas">Estatísticas</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#termos">Termos de uso</a></li>
+                    <li><a href="#privacidade">Política de privacidade</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#trabalhe">Trabalhe conosco</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 HoopLife - Portal Oficial de Basquetebol. Todos os direitos reservados.</p>
+            <p style="margin-top: 0.5rem;">Desenvolvido com Excelência Técnica</p>
+        </div>
     </footer>
 </body>
 </html>
