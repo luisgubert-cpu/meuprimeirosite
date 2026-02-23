@@ -1,24 +1,504 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Primeiro Site s2</title>
+    <title>🏀 HoopLife - Tudo sobre Basquete</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #f5f5f5 0%, #e0e0e0 100%);
+            color: #1a1a2e;
+        }
+
+        /* Cabeçalho com efeito de quadra */
+        header {
+            background: linear-gradient(135deg, #c96c2c 0%, #b85e1e 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-bottom: 6px solid #f9a826;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "🏀🏀🏀";
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            font-size: 2.5rem;
+            opacity: 0.15;
+            letter-spacing: 20px;
+            transform: rotate(-5deg);
+            pointer-events: none;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            text-shadow: 3px 3px 0 #4a2c1a;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            font-style: italic;
+            text-shadow: 1px 1px 0 #333;
+            background-color: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 0.3rem 2rem;
+            border-radius: 30px;
+            margin-top: 8px;
+        }
+
+        /* Barra de navegação com tema */
+        nav {
+            background-color: #1e2a3a;
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            padding: 1rem 2rem;
+            border-bottom: 3px solid #f9a826;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        nav a:hover {
+            background-color: #f9a826;
+            color: #1e2a3a;
+            border-color: #c96c2c;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Conteúdo principal */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Seção de destaque com quadra */
+        .destaque {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+            url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100"><rect width="100" height="100" fill="%23d6a56b"/><circle cx="50" cy="50" r="15" fill="none" stroke="%23ffffff80" stroke-width="2"/><line x1="0" y1="0" x2="100" y2="100" stroke="%23ffffff80" stroke-width="1"/><line x1="100" y1="0" x2="0" y2="100" stroke="%23ffffff80" stroke-width="1"/><circle cx="50" cy="50" r="3" fill="%23ffffff80"/></svg>');
+            background-size: 80px 80px, cover;
+            background-blend-mode: overlay;
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            margin-bottom: 2.5rem;
+            border: 3px solid #f9a826;
+            text-align: center;
+        }
+
+        .destaque h2 {
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 0 #c96c2c;
+            margin-bottom: 1rem;
+        }
+
+        .destaque p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            background-color: rgba(0,0,0,0.5);
+            padding: 1rem;
+            border-radius: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #f9a826;
+            color: #1e2a3a;
+            font-weight: bold;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border: 2px solid #c96c2c;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #c96c2c;
+            color: white;
+            border-color: #f9a826;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(249,168,38,0.5);
+        }
+
+        /* Cards de notícias/jogadores */
+        .noticias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-bottom: 5px solid #c96c2c;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(201,108,44,0.4);
+        }
+
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-color: #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(255,255,255,0.2);
+            background-blend-mode: overlay;
+        }
+
+        /* imagens simuladas com cores sólidas e ícones */
+        .img1 { background: linear-gradient(135deg, #c96c2c, #f9a826); }
+        .img2 { background: linear-gradient(135deg, #1e2a3a, #2c3e50); }
+        .img3 { background: linear-gradient(135deg, #b85e1e, #d47b3a); }
+        .img4 { background: linear-gradient(135deg, #2c3e50, #1e2a3a); }
+
+        .card-content {
+            padding: 1.8rem 1.5rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.8rem;
+            color: #c96c2c;
+            margin-bottom: 0.5rem;
+            border-left: 5px solid #f9a826;
+            padding-left: 1rem;
+        }
+
+        .card-content p {
+            color: #2d3436;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .tag {
+            background-color: #c96c2c;
+            color: white;
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* Tabela de classificação */
+        .tabela-classificacao {
+            background: #1e2a3a;
+            color: white;
+            padding: 2rem;
+            border-radius: 30px;
+            margin: 3rem 0;
+            border: 2px solid #f9a826;
+            box-shadow: 0 8px 0 #c96c2c;
+        }
+
+        .tabela-classificacao h2 {
+            font-size: 2.2rem;
+            color: #f9a826;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1.1rem;
+        }
+
+        th {
+            background-color: #c96c2c;
+            color: white;
+            padding: 1rem;
+            font-size: 1.2rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #f9a826;
+            text-align: center;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #2c3e50;
+        }
+
+        .time-col {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        /* Times em destaque */
+        .times-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .time-icone {
+            background: white;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 0 #c96c2c, 0 12px 20px rgba(0,0,0,0.2);
+            border: 3px solid #f9a826;
+            transition: all 0.3s;
+        }
+
+        .time-icone:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 0 #f9a826, 0 15px 25px rgba(201,108,44,0.5);
+        }
+
+        .time-icone span {
+            font-size: 3.5rem;
+            filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.3));
+        }
+
+        .time-icone small {
+            font-weight: bold;
+            color: #1e2a3a;
+            margin-top: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #1e2a3a;
+            color: #ccc;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 5px solid #f9a826;
+            font-size: 1rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        footer .destaque-footer {
+            color: #f9a826;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        /* responsividade */
+        @media (max-width: 700px) {
+            header h1 { font-size: 2.2rem; }
+            nav { gap: 1rem; }
+            .destaque h2 { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>🏀 HoopLife</h1>
+        <p>Sua dose diária de basquete</p>
+    </header>
 
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Notícias</a>
+        <a href="#">Times</a>
+        <a href="#">Jogadores</a>
+        <a href="#">Estatísticas</a>
+        <a href="#">Ingressos</a>
+    </nav>
 
+    <main>
+        <section class="destaque">
+            <h2>NBA Playoffs 2025</h2>
+            <p>🔴⚪🔵 A emoção está no auge! Confira os confrontos das finais de conferência e quem leva o título. Tudo acompanhado por aqui.</p>
+            <a href="#" class="btn">Ver tabela completa dos playoffs</a>
+        </section>
 
+        <h2 style="font-size: 2.2rem; margin-bottom: 1rem; border-left: 10px solid #c96c2c; padding-left: 1rem;">🔥 Últimas do basquete</h2>
 
+        <div class="noticias-grid">
+            <article class="card">
+                <div class="card-img img1">🏆</div>
+                <div class="card-content">
+                    <span class="tag">Destaque</span>
+                    <h3>MVP da temporada</h3>
+                    <p>Nikola Jokić conquista o terceiro MVP da carreira após médias de 29.3 pts, 13.2 reb e 10.5 assist. Gênio!</p>
+                    <a href="#" style="color:#c96c2c; font-weight: bold;">Leia mais →</a>
+                </div>
+            </article>
+            <article class="card">
+                <div class="card-img img2">✨</div>
+                <div class="card-content">
+                    <span class="tag">Transação</span>
+                    <h3>Super troca no mercado</h3>
+                    <p>Lakers e Hawks fecham acordo: Trae Young vai para LA em troca de pacote com Russell e futuras picks.</p>
+                    <a href="#" style="color:#c96c2c; font-weight: bold;">Leia mais →</a>
+                </div>
+            </article>
+            <article class="card">
+                <div class="card-img img3">🇺🇸</div>
+                <div class="card-content">
+                    <span class="tag">Seleção</span>
+                    <h3>Pré-olímpico: EUA convocados</h3>
+                    <p>Lebron, Curry e Durant lideram a seleção norte-americana rumo a Paris 2025. Veja a lista completa.</p>
+                    <a href="#" style="color:#c96c2c; font-weight: bold;">Leia mais →</a>
+                </div>
+            </article>
+            <article class="card">
+                <div class="card-img img4">🏀</div>
+                <div class="card-content">
+                    <span class="tag">NBB</span>
+                    <h3>Flamengo x Franca</h3>
+                    <p>Clássico brasileiro acontece sábado no Maracanãzinho. Ingressos esgotados em 2 horas.</p>
+                    <a href="#" style="color:#c96c2c; font-weight: bold;">Leia mais →</a>
+                </div>
+            </article>
+        </div>
 
+        <section class="tabela-classificacao">
+            <h2>🏆 Classificação NBA - Conferência Leste</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th class="time-col">Time</th>
+                        <th>V</th>
+                        <th>D</th>
+                        <th>%</th>
+                        <th>Últimos 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td class="time-col">🏀 Boston Celtics</td>
+                        <td>52</td>
+                        <td>15</td>
+                        <td>.776</td>
+                        <td>4-1</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="time-col">🏀 Milwaukee Bucks</td>
+                        <td>48</td>
+                        <td>19</td>
+                        <td>.716</td>
+                        <td>3-2</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="time-col">🏀 Cleveland Cavaliers</td>
+                        <td>45</td>
+                        <td>22</td>
+                        <td>.672</td>
+                        <td>5-0</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td class="time-col">🏀 New York Knicks</td>
+                        <td>43</td>
+                        <td>24</td>
+                        <td>.642</td>
+                        <td>3-2</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td class="time-col">🏀 Philadelphia 76ers</td>
+                        <td>40</td>
+                        <td>27</td>
+                        <td>.597</td>
+                        <td>2-3</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: right; margin-top: 1.5rem; color: #f9a826;">Atualizado em 23/02/2025</p>
+        </section>
 
+        <h2 style="font-size: 2rem; margin: 2rem 0 1rem; text-align: center;">⭐ Times para acompanhar ⭐</h2>
+        <div class="times-row">
+            <div class="time-icone">
+                <span>💚</span>
+                <small>Celtics</small>
+            </div>
+            <div class="time-icone">
+                <span>💛</span>
+                <small>Lakers</small>
+            </div>
+            <div class="time-icone">
+                <span>💙</span>
+                <small>Warriors</small>
+            </div>
+            <div class="time-icone">
+                <span>❤️</span>
+                <small>Bulls</small>
+            </div>
+            <div class="time-icone">
+                <span>🖤</span>
+                <small>Heat</small>
+            </div>
+        </div>
 
-    helle world!!!
+        <section style="background: #f9a826; padding: 2rem; border-radius: 30px; margin: 3rem 0; color: #1e2a3a; text-align: center; border: 4px solid #c96c2c;">
+            <h2 style="font-size: 2.2rem;">🏀⚡ Não perca nenhum lance!</h2>
+            <p style="font-size: 1.3rem; margin: 1rem 0;">Inscreva-se na nossa newsletter e receba notícias, estatísticas e curiosidades.</p>
+            <form style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 600px; margin: 0 auto;">
+                <input type="email" placeholder="Seu melhor e-mail" style="flex: 1; min-width: 200px; padding: 1rem 1.5rem; border-radius: 50px; border: none; font-size: 1rem;">
+                <button type="submit" class="btn" style="border: none; cursor: pointer;">Inscrever</button>
+            </form>
+        </section>
+    </main>
 
-
-
-
-
-
+    <footer>
+        <p class="destaque-footer">🏀 HoopLife - O site do verdadeiro fã de basquete</p>
+        <p>© 2025 HoopLife. Todos os direitos reservados.</p>
+        <p>NBA, NBB, Euroliga e outras ligas do mundo em um só lugar.</p>
+        <p style="margin-top: 1rem;">🍊 Feito com paixão pela laranja e pela cesta.</p>
+    </footer>
 </body>
 </html>
